@@ -65,7 +65,7 @@ if(cluster.isMaster){
                res.setHeader('Access-Control-Allow-Origin', origin);
           }
           //      res.setHeader("Access-Control-Allow-Origin", "*");
-                res.setHeader("Access-Control-Allow-Origin", "");
+                //res.setHeader("Access-Control-Allow-Origin", "");
 
                res.setHeader("Access-Control-Allow-Methods", "POST, GET,DELETE,OPTIONS");
                res.setHeader("Access-Control-Max-Age", "3600");

@@ -98,17 +98,18 @@ responseToPostback=(pageId,senderId,title)=>{
                 case "<GET_STARTED_PAYLOAD>" :{
                     console.log(page)
                     Welcome_template.find({bot:page.bot},(err,templates)=>{
+                        console.log("TEMPLATES" ,templates)
                         sendMessage(senderId,page.access_token,templates)
 
                     })
                 }
             }
-            Block.findOne({_id:title},(err,block)=>{
+           /* Block.findOne({_id:title},(err,block)=>{
                 Block_template.find({block:block._id},(err,templates)=>{
                     sendMessage(senderId,page.access_token,templates)
 
                 })
-            })
+            })*/
             
     
             

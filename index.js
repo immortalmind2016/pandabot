@@ -59,9 +59,13 @@ if(cluster.isMaster){
   app.use(bodyParser.urlencoded({extended:false}))
   app.use(cors())
          app.use(function(req, res, next) {
-    
-                res.setHeader("Access-Control-Allow-Origin", "*");
-                res.setHeader("Access-Control-Allow-Origin", "https://d2a2bac9.ngrok.io");
+          var allowedOrigins = ['https://d2a2bac9.ngrok.io', 'http://localhost:2019', 'http://127.0.0.1:9000', 'http://localhost:9000'];
+          var origin = req.headers.origin;
+          if(allowedOrigins.indexOf(origin) > -1){
+               res.setHeader('Access-Control-Allow-Origin', origin);
+          }
+          //      res.setHeader("Access-Control-Allow-Origin", "*");
+                res.setHeader("Access-Control-Allow-Origin", "");
 
                res.setHeader("Access-Control-Allow-Methods", "POST, GET,DELETE,OPTIONS");
                res.setHeader("Access-Control-Max-Age", "3600");

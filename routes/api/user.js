@@ -22,7 +22,7 @@ const facebook=require("../../config/facebook_passport")
   */
   
 Router.post("/login",userController.login)
-
+//Router.get("/login",passport.authenticate('facebook'))
 
 
 
@@ -78,7 +78,9 @@ Router.get("/",passport.authenticate("jwt",{session:false}),userController.get)
     
  }, 'secret' , { expiresIn: '1d' });
  //res.json({success:true,token:"Bearer "+token})
-     res.status(200).redirect("http://localhost:2019/?="+"Bearer "+token);
+    console.log("CALLBACK ",req.user)
+
+    res.status(200).redirect(" http://d2a2bac9.ngrok.io/auth/facebook?token="+token);
 
  })
  Router.get("/auth/facebook",facebook.authenticate("facebook",{ scope: ['manage_pages',"pages_messaging"] }))

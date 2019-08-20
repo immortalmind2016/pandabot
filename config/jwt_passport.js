@@ -9,7 +9,7 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'secret';
 
 module.exports=passport.use(new jwtStrategy(opts,(payload,done)=>{
-  //  console.log("PAYLOAD ",payload)
+   console.log("PAYLOAD__ ",payload)
 
         if(payload._doc){
           //  console.log("PAYLOAD")
@@ -22,6 +22,7 @@ module.exports=passport.use(new jwtStrategy(opts,(payload,done)=>{
                 }
             })
         }else{
+          console.log("PAYLOAD ",payload)
             User.findOne({facebook_id: payload.userID}, function(err, user) {
                 let date=moment().format("YY-DD-MM HH:mm");
                 

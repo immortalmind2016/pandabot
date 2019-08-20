@@ -5,6 +5,7 @@ let Ai=require("../../../model/Ai")
 let Block_template=require("../../../model/Block_template")
 const {sendplugin_single} =require("../../../helpers/plugins")
 let Welcome_template=require("../../../model/Welcome_template")
+let Messenger_user=require("../../../model/Messenger_user")
 
 const subscribeApp=(pageId,accessToken)=>{
 axios.post("https://graph.facebook.com/v3.3/"+pageId+"/subscribed_apps?access_token="+accessToken,{
@@ -75,20 +76,33 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
             })
 
         }else{
-        axios.post("https://graph.facebook.com/v3.3/me/messages?access_token="+accessToken,{
-            recipient:{
-                id:senderId
-            },
-                message:JSON.parse(templates[i].message)
-        }).then((response)=>{
-         //   console.log(response.data)
-             sendMessage(senderId,accessToken,templates,++i)
-        }).catch((e)=>{
-        //    console.log(e.response)
-    
-             sendMessage(senderId,accessToken,templates,++i)
-    
-        })
+            var vars=["first_name","last_name"]
+
+                  
+            Messenger_user.findOne({messenger_id:senderId},(err,user)=>{
+                if(!!templates[i].message){
+                    for(var i=0;i<vars.length;i++){
+                       templates[i].message=templates[i].message.replace("{"+vars[i]+"}",user[vars[i]])
+                     }
+              
+                   }
+                axios.post("https://graph.facebook.com/v3.3/me/messages?access_token="+accessToken,{
+                    recipient:{
+                        id:senderId
+                    },
+                        message:JSON.parse(templates[i].message)
+                }).then((response)=>{
+                 //   console.log(response.data)
+                     sendMessage(senderId,accessToken,templates,++i)
+                }).catch((e)=>{
+                //    console.log(e.response)
+            
+                     sendMessage(senderId,accessToken,templates,++i)
+            
+                })
+            })
+                
+        
     }
   
 

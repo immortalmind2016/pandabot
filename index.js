@@ -38,9 +38,9 @@ if(cluster.isMaster){
       child.send({type:"start"})
 
 
+/*
 
-
-   for (var i = 0; i < 3; i++) {
+   for (var i = 0; i < 2; i++) {
     var worker = cluster.fork();
 
     worker.on('message', function(msg) {
@@ -49,7 +49,7 @@ if(cluster.isMaster){
     });
 
 
-  }
+   }*/
   
 }else{
   

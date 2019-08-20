@@ -3,7 +3,7 @@ const moment=require('moment')
 let schedules=[]
 const mongoose=require("mongoose")
 const Bot=require("../model/Bot")
-const Schedule=require("../model/schedule")
+const Schedule=require("../model/Schedule")
 mongoose.connect("mongodb://immortalmind:0115120323a@ds233596.mlab.com:33596/pandabot_beta")
 const Page=require("../model/Page")
 const Messenger_user=require("../model/Messenger_user")

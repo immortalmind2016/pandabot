@@ -84,6 +84,6 @@ if(cluster.isMaster){
   app.use("/api/dashboard",dashboard)
   app.use("/api",index)
 
-  app.listen(80)
+  app.listen(process.env.PORT||80)
 
 }

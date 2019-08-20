@@ -127,6 +127,7 @@ responseToPostback=(pageId,senderId,title)=>{
                             sendMessage(senderId,page.access_token,templates)
         
                         })
+                    })
                 }
             }
            /*

@@ -122,6 +122,7 @@ responseToPostback=(pageId,senderId,title)=>{
                     })
                 }
                 default :{
+                    console.log("TITLE ",title)
                     Block.findOne({_id:title},(err,block)=>{
                         if(!!block)
                         Block_template.find({block:block._id},(err,templates)=>{

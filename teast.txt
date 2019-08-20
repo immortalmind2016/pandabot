@@ -1,0 +1,120 @@
+
+ TEMPLATE TYPE (TEXT)
+{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"What do you want to do next?",
+        "buttons":[  
+                {
+                "type": "postback",
+                "title": "show list",
+                "payload": "BEST_10_GAMES"
+                },
+          {
+            "type":"web_url",
+            "url":"https://www.messenger.com",
+            "title":"Visit Messenger"
+          },
+          {
+            "type":"element_share"
+        }
+ 
+         
+        ]
+      }
+    }
+
+===============
+
+{
+ "attachment":{
+ "type":"image",
+ "payload":{
+ "url":"https://c.top4top.net/p_11380nos41.png",
+ "is_reusable":true
+ }
+ }
+ }
+
+
+ =========
+TEMPLATE TYPE (IMAGE WITH BUTTONS)
+
+ {
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
+        "elements":[
+           {
+            "title":"Welcome!",
+            "image_url":"https://petersfancybrownhats.com/company_image.png",
+            "subtitle":"We have the right hat for everyone.",
+            "default_action": {
+              "type": "web_url",
+              "url": "https://petersfancybrownhats.com/view?item=103",
+              "webview_height_ratio": "tall",  // 3ndna ht3ml no3en -> tall and full
+            },
+            "buttons":[  // Min 1  max 3
+              {
+                "type":"web_url",
+                "url":"https://petersfancybrownhats.com",
+                "title":"View Website"
+              },{
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+              }              
+            ]      
+          }
+        ]
+      }
+    }
+
+
+=======================
+{
+    "text": "Here is a quick reply!",
+    "quick_replies":[ // 7aga zy el buttons  Max 3
+      {
+        "content_type":"text", 
+        "title":"Search",
+        "payload":"SECTION_2"
+      
+      }
+    ]
+}
+
+=======================
+TEXT ONLY 
+
+{
+    "text":"hello, world!"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[ 
+
+
+
+]

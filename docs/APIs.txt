@@ -1,0 +1,41 @@
+/*
+ @url api/dashboard/
+ @method POST
+ @type Private
+ @params user data
+ @desc
+  for creating new bot\
+  return created Bot Data
+  
+*/
+
+/*
+ @url api/dashboard/:id
+ @method DELETE
+ @type Private
+ @desc
+  for delete bot
+  return status
+  
+*/
+
+/*
+ @url api/dashboard/:id
+ @method POST
+ @type Private
+ @params Edited Data
+ @desc
+  edit bot 
+  return status
+  
+*/
+
+/*
+ @url api/dashboard/
+ @method GET
+ @type Private
+ @desc
+  get all bots
+  return all bots array
+  
+*/

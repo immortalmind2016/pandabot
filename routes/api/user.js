@@ -80,7 +80,7 @@ Router.get("/",passport.authenticate("jwt",{session:false}),userController.get)
  //res.json({success:true,token:"Bearer "+token})
     console.log("CALLBACK ",req.user)
 
-    res.status(200).redirect("http://localhost:2019/auth/facebook?token="+token);
+    res.status(200).redirect("https://d2a2bac9.ngrok.io/auth/facebook?token="+token);
 
  })
  Router.get("/auth/facebook",facebook.authenticate("facebook",{ scope: ['manage_pages',"pages_messaging"] }))

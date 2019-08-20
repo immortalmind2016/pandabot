@@ -4,6 +4,7 @@ let Block=require("../../../model/Block")
 let Ai=require("../../../model/Ai")
 let Block_template=require("../../../model/Block_template")
 const {sendplugin_single} =require("../../../helpers/plugins")
+let Welcome_template=require("../../../model/Welcome_template")
 
 const subscribeApp=(pageId,accessToken)=>{
 axios.post("https://graph.facebook.com/v3.3/"+pageId+"/subscribed_apps?access_token="+accessToken,{
@@ -63,7 +64,7 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                             })
                         }
                         case "redirect":{
-                            
+
                         }
                     }
 

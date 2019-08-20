@@ -81,8 +81,8 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                   
             Messenger_user.findOne({messenger_id:senderId},(err,user)=>{
                 if(!!templates[i].message){
-                    for(var i=0;i<vars.length;i++){
-                       templates[i].message=templates[i].message.replace("{"+vars[i]+"}",user[vars[i]])
+                    for(var v=0;v<vars.length;v++){
+                       templates[i].message=templates[i].message.replace("{"+vars[i]+"}",user[vars[v]])
                      }
               
                    }

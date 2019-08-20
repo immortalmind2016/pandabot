@@ -46,7 +46,7 @@ const sendTyping_single=(senderId,seconds,accessToken)=>{
 }
 const sendMessage=(senderId,accessToken,templates,i=0)=>{
     //console.log(templates)
-  
+    console.log(templates[i],"TEMPLATE")
         if(i==templates.length){
             return 
         }

@@ -123,6 +123,7 @@ responseToPostback=(pageId,senderId,title)=>{
                 }
                 default :{
                     Block.findOne({_id:title},(err,block)=>{
+                        if(!!block)
                         Block_template.find({block:block._id},(err,templates)=>{
                             sendMessage(senderId,page.access_token,templates)
         

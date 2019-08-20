@@ -64,7 +64,10 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                             })
                         }
                         case "redirect":{
+                            Block_template.find({block:templates[i].redirect},(err,temps)=>{
+                                sendMessage(senderId,accessToken,temps)
 
+                            })
                         }
                     }
 

@@ -185,7 +185,7 @@ responseAi=(pageId,senderId,message)=>{
                         if(sent!=true)
                         {
                             console.log("TRUEEE  "),
-                            sendMessage(senderId,page.access_token,[{"text":ai.replay}])
+                            sendMessage(senderId,page.access_token,{message:`[{"text":${ai.replay}]`})
                             sent=true;
                         }
                        }

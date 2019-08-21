@@ -88,6 +88,8 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                 if(!!templates[i].message){
                     for(var v=0;v<vars.length;v++){
                        message=message.replace("{"+vars[i]+"}",user[vars[v]])
+                       console.log("V ",user[vars[v]])
+
                      }
               
                    }

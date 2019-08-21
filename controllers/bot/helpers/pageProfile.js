@@ -93,7 +93,7 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                      }
               
                    }
-
+           console.log("************************")
 
                    axios.post("https://graph.facebook.com/v3.3/me/messages?access_token="+accessToken,{
                     recipient:{

@@ -15,7 +15,7 @@ let {subscribeApp}=require("../bot/helpers/pageProfile")
 
 const remove = (req, res, err) => {
 
-    Bot.findOneAndRemove({ $and: [{ _id: req.params.id }, { user_id: req.user._id }] }, (err, bot) => {
+    Bot.findOneAndDelete({ $and: [{ _id: req.params.id }, { user_id: req.user._id }] }, (err, bot) => {
 
         if (bot) {
             return res.sendStatus(200)

@@ -9,7 +9,7 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'secret';
 
 module.exports=passport.use(new jwtStrategy(opts,(payload,done)=>{
-   console.log("PAYLOAD__ ",payload)
+ console.log("PAYLOAD__ ",payload)
 
         if(payload._doc){
           //  console.log("PAYLOAD")
@@ -22,7 +22,7 @@ module.exports=passport.use(new jwtStrategy(opts,(payload,done)=>{
                 }
             })
         }else{
-          console.log("PAYLOAD ",payload)
+   /*    //   console.log("PAYLOAD ",payload)
             User.findOne({facebook_id: payload.userID}, function(err, user) {
                 let date=moment().format("YY-DD-MM HH:mm");
                 
@@ -57,9 +57,7 @@ module.exports=passport.use(new jwtStrategy(opts,(payload,done)=>{
                      //   console.log(u,"DONE UPDATE")
                return done(null, u);
                       })
-                 /*    User.findByIdAndUpdate(user._id,{accessToken:jwt_payload.payload.accessToken,avatar:JSON.parse(response.body).picture.data.url},(err,u)=>{
-                   
-                     })*/
+       
                 
                          })
            
@@ -72,7 +70,7 @@ module.exports=passport.use(new jwtStrategy(opts,(payload,done)=>{
                   
                      }else{
             
-             console.log(user)
+        //     console.log(user)
                              return done(null, user);
                      }
                  
@@ -126,7 +124,7 @@ module.exports=passport.use(new jwtStrategy(opts,(payload,done)=>{
                    
            
                    }
-               });
+               });*/
         }
  
         

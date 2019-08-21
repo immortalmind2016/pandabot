@@ -1,5 +1,10 @@
 const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
+const Schedule=require("./Schedule")
+const Block=require("./Block")
+
+const Welcome_template=require("./Welcome_template")
+
 const Bot=new Schema({
 
     name:String,
@@ -40,5 +45,18 @@ const Bot=new Schema({
     }
     ,
     created_date:Date,
+})
+Bot.post("findOneAndDelete",function(doc){
+
+ 
+    Schedule.findOneAndDelete({bot:doc.id},(err)=>{
+        console.log("ERRRR ",err)
+    })
+    Block.findOneAndDelete({bot:doc.id},(err)=>{
+
+    })
+    Welcome_template.findOneAndDelete({bot:doc.id},(err)=>{
+    })
+   
 })
 module.exports=mongoose.model("Bot",Bot)

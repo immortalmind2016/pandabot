@@ -195,12 +195,13 @@ const createBlock=(req,res,err)=>{
         }
     })
 }
+
 const removeBlock=(req,res,err)=>{
     Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }] }, (err, bot) => {
         if (bot) {
             console.log(req.params)
-         Block.findOneAndRemove({$and:[{bot:req.params.botid},{_id:req.params.blockid}]},(err,block)=>{
-            Block_template.deleteMany({block:req.params.blockid})
+
+         Block.findOneAndDelete({$and:[{_id:req.params.blockid},{bot:req.params.botid}]},(err,block)=>{
              if(!err){
               return  res.sendStatus(200)
              }else

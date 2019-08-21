@@ -34,9 +34,10 @@ const removeSchedule = (req, res, err) => {
 
     Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }] }, (err, bot) => {
         if (bot) {
-            Schedule.findOneAndRemove({ $and: [{ _id: req.params.scheduleid }, { bot: bot._id }] }, (err, schedule) => {
-                Schedule_template.deleteMany({schedule:req.params.scheduleid})
+         
 
+            Schedule.findOneAndDelete({ $and: [{ _id: req.params.scheduleid }, { bot: bot._id }] }, (err, schedule) => {
+          
                 if (err) {
                     return res.sendStatus(500)
                 }
@@ -45,7 +46,6 @@ const removeSchedule = (req, res, err) => {
                     process.send({schedule,type:"remove"},()=>{
 
                     })
-                    Schedule_template.remove({schedule:schedule._id})
                     res.sendStatus(200)
                 }else{
 

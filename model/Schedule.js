@@ -1,5 +1,6 @@
 const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
+const Schedule_template=require("./Schedule_template")
 const Schedule=new Schema({
 
     bot:{
@@ -29,5 +30,17 @@ const Schedule=new Schema({
     }
   
 })
+Schedule.post("findOneAndDelete",function(doc){
+   /* let query = this.getQuery()["$and"]
+    let id=query[0]._id
+*/
+    console.log("*************************",doc)
+    
+  Schedule_template.deleteOne({schedule:doc._id},(err)=>{
+   
 
+    })
+   
+ 
+})
 module.exports=mongoose.model("Schedule",Schedule)

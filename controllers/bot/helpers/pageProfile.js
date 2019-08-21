@@ -84,10 +84,10 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                   
             Messenger_user.findOne({messenger_id:senderId},(err,user)=>{
                 console.log("IFFFF ",user , typeof(templates[i].message))
-                let message=""
+                let message=templates[i].message
                 if(!!templates[i].message){
                     for(var v=0;v<vars.length;v++){
-                       message=templates[i].message.replace("{"+vars[i]+"}",user[vars[v]])
+                       message=message.replace("{"+vars[i]+"}",user[vars[v]])
                      }
               
                    }

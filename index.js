@@ -8,7 +8,6 @@ const index=require("./routes/api/index");
 
 const admin=require("./routes/api/admin");
 const Schedule=require("./model/Schedule");
-
 const mongoose=require("mongoose");
 const { fork}=require("child_process")
 const process = require('process');
@@ -89,6 +88,9 @@ if(cluster.isMaster){
 
   app.use("/api/dashboard",dashboard)
   app.use("/api",index)
+  app.use("*",(req,res,err)=>{
+    res.sendFile(path.resolve(__dirname,"build","index.html"))
+  })
 
   app.listen(process.env.PORT||80)
 

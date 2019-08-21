@@ -47,7 +47,7 @@ const sendTyping_single=(senderId,seconds,accessToken)=>{
 }
 const sendMessage=(senderId,accessToken,templates,i=0)=>{
     //console.log(templates)
-    console.log(templates[i],"TEMPLATE")
+    //console.log(templates[i],"TEMPLATE")
         if(i==templates.length){
             return 
         }
@@ -77,6 +77,9 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
 
         }else{
             var vars=["first_name","last_name"]
+            const pattern=/\{[A-z0-9]*\}/i
+              console.log("MESSAGE ",templates[i].message)
+                if(templates[i].message.match(pattern)){
 
                   
             Messenger_user.findOne({messenger_id:senderId},(err,user)=>{
@@ -86,6 +89,11 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                      }
               
                    }
+               
+            })
+        }
+
+            else{
                 axios.post("https://graph.facebook.com/v3.3/me/messages?access_token="+accessToken,{
                     recipient:{
                         id:senderId
@@ -100,7 +108,7 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                      sendMessage(senderId,accessToken,templates,++i)
             
                 })
-            })
+            }
                 
         
     }
@@ -116,7 +124,7 @@ responseToPostback=(pageId,senderId,title)=>{
                 case "<GET_STARTED_PAYLOAD>" :{
                     console.log(page)
                     Welcome_template.find({bot:page.bot},(err,templates)=>{
-                        console.log("TEMPLATES" ,templates)
+                 //       console.log("TEMPLATES" ,templates)
                         sendMessage(senderId,page.access_token,templates)
 
                     })

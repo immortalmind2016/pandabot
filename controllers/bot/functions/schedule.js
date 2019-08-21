@@ -35,7 +35,7 @@ const removeSchedule = (req, res, err) => {
     Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }] }, (err, bot) => {
         if (bot) {
             Schedule.findOneAndRemove({ $and: [{ _id: req.params.scheduleid }, { bot: bot._id }] }, (err, schedule) => {
-                Schedule_template.remove({schedule:req.params.scheduleid})
+                Schedule_template.deleteMany({schedule:req.params.scheduleid})
 
                 if (err) {
                     return res.sendStatus(500)

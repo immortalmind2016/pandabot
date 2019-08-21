@@ -200,7 +200,7 @@ const removeBlock=(req,res,err)=>{
         if (bot) {
             console.log(req.params)
          Block.findOneAndRemove({$and:[{bot:req.params.botid},{_id:req.params.blockid}]},(err,block)=>{
-            Block_template.remove({block:req.params.blockid})
+            Block_template.deleteMany({block:req.params.blockid})
              if(!err){
               return  res.sendStatus(200)
              }else

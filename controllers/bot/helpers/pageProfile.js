@@ -87,9 +87,8 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                 let message=templates[i].message
                 if(!!templates[i].message){
                     for(var v=0;v<vars.length;v++){
-                        console.log("V ",user[vars[v]] ,message.match("{"+vars[v]+"}") ,"{"+vars[v]+"}" )
 
-                       message=message.replace("{"+vars[i]+"}",user[vars[v]])
+                       message=message.replace("{"+vars[v]+"}",user[vars[v]])
 
                      }
               

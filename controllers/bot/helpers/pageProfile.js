@@ -83,17 +83,35 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
 
                   
             Messenger_user.findOne({messenger_id:senderId},(err,user)=>{
+                console.log("IFFFF ",user)
                 if(!!templates[i].message){
                     for(var v=0;v<vars.length;v++){
                        templates[i].message=templates[i].message.replace("{"+vars[i]+"}",user[vars[v]])
                      }
               
                    }
+
+
+                   axios.post("https://graph.facebook.com/v3.3/me/messages?access_token="+accessToken,{
+                    recipient:{
+                        id:senderId
+                    },
+                        message:JSON.parse(templates[i].message)
+                }).then((response)=>{
+                 //   console.log(response.data)
+                     sendMessage(senderId,accessToken,templates,++i)
+                }).catch((e)=>{
+                //    console.log(e.response)
+            
+                     sendMessage(senderId,accessToken,templates,++i)
+            
+                })
                
             })
-        }
+                     }
 
             else{
+                console.log("ELSEEE")
                 axios.post("https://graph.facebook.com/v3.3/me/messages?access_token="+accessToken,{
                     recipient:{
                         id:senderId

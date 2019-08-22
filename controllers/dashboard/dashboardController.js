@@ -37,7 +37,7 @@ const create = (req, res, err) => {
         created_date: new Date(),
         user_id: req.user._id,
         menu:`
-        [
+        persistent_menu:[
             {
               locale: "default",
               composer_input_disabled: false,

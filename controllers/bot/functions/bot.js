@@ -21,13 +21,13 @@ const webhook=(req,res,err)=>{
        
         Page.findOne({page_id:recipientId},(err,page)=>{
             //    console.log("page ",page)
-                  
+            
              
-                if(!user&&page&&page.page_id==recipientId){
-                    if(page.bot)
+                if(user!==null&&page&&page.page_id==recipientId){
+                  if(page.bot)
                     Bot.findOne({_id:page.bot},(err,bot)=>{
                         Messenger_user.count({page:page._id},(err,number)=>{
-                            console.log("NUMBER ",number," sssssssssssssss ",bot.max_number)
+                         //   console.log("NUMBER ",number," sssssssssssssss ",bot.max_number)
                             if(number>=bot.max_number){
                                 
                             }else{
@@ -42,13 +42,15 @@ const webhook=(req,res,err)=>{
                                     if(!!message.postback){
                                         const postback=message.postback;
                                         const title=message.postback.payload;
-                                  //      responseToPostback(recipientId,senderId,title,page.bot)
+                                        responseToPostback(recipientId,senderId,title,page.bot)
                                     }
                                     else{
-                                       // responseAi(recipientId,senderId,message.message.text)
+                                        responseAi(recipientId,senderId,message.message.text)
                             
                                     }
                                     }) 
+                                }).catch((e)=>{
+                              console.log(e)
                                 })
                             }
                         })
@@ -61,10 +63,10 @@ const webhook=(req,res,err)=>{
                     if(!!message.postback){
                         const postback=message.postback;
                         const title=message.postback.payload;
-                       // responseToPostback(recipientId,senderId,title,page.bot)
+                        responseToPostback(recipientId,senderId,title,page.bot)
                     }
                     else{
-                    //    responseAi(recipientId,senderId,message.message.text)
+                        responseAi(recipientId,senderId,message.message.text)
             
                     }
                 }

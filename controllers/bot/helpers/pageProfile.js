@@ -190,7 +190,7 @@ responseAi=(pageId,senderId,message)=>{
                                 sent=true;
                             }else if (ai.type=="block"){
                                 console.log("AI TPE BLOCK")
-                                Block_template.findOne({block:ai.payload},(err,templates)=>{
+                                Block_template.find({block:ai.payload},(err,templates)=>{
                                     console.log("AI TPE BLOCK" ,templates)
 
                                     sendMessage(senderId,page.access_token,templates)

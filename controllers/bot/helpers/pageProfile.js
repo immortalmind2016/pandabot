@@ -186,7 +186,7 @@ responseAi=(pageId,senderId,message)=>{
                  
                     questions.forEach((q)=>{
                         if(message.trim().includes(q.trim())){
-                         if(sent!=true)
+                         if(sent!=true&&!ai.default_message)
                          {
                              console.log("TRUEEE  ",[{message:`[{"text":"${ai.replay}"]`}])
                              if(ai.type=="text"){

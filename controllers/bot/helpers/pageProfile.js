@@ -12,9 +12,9 @@ axios.post("https://graph.facebook.com/v3.3/"+pageId+"/subscribed_apps?access_to
     subscribed_fields:["messages","standby","messaging_postbacks"]
 })
 .then(response=>{
-    console.log(response.data)
+   // console.log(response.data)
 }).catch((e)=>{
-    console.log("ERROR ",e)
+  //  console.log("ERROR ",e)
 })
 }
 const sendTyping_single=(senderId,seconds,accessToken)=>{

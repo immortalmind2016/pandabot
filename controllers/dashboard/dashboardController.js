@@ -180,14 +180,13 @@ Page.findOne({page_id:pageId},(err,page)=>{
         page.save((err,page)=>{
     
             Page.findOne({bot:botId},(err,page)=>{
+                console.log(page.bot,"ACCESS ",page.accessToken)
                 if(!!page){
                     axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.welcome_message)).then(response=>{
-                        Bot.findOneAndUpdate({_id:botId},{menu:JSON.stringify(data)},(err,bot)=>{
-                            res.sendStatus(200) 
-                        })
+                    
                         
                     }).catch((e)=>{
-                     console.log(e)
+                    // console.log(e)
                     })
                 
                 }else{
@@ -215,12 +214,10 @@ Page.findOne({page_id:pageId},(err,page)=>{
             Page.findOne({bot:botId},(err,page)=>{
                 if(!!page){
                     axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.welcome_message)).then(response=>{
-                        Bot.findOneAndUpdate({_id:botId},{menu:JSON.stringify(data)},(err,bot)=>{
-                            res.sendStatus(200) 
-                        })
+                      
                         
                     }).catch((e)=>{
-                     console.log(e)
+                 //    console.log(e)
                     })
                 
                 }else{

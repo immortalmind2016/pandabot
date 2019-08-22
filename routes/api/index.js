@@ -36,12 +36,12 @@ Router.post(
 console.log("ERR",err)
         }) 
         Jimp.read(
-            "/"+req.file.filename,
+            "/assets/images/"+req.file.filename,
           async  (err, lenna) => {
               if (err) throw err;
            await lenna
                 .resize(500, 260) // resize
-                .write("./"+req.file.filename); // save
+                .write("/assets/images/"+req.file.filename); // save
                 console.log(req.file)
                 res.json({img:"https://pandabotbeta2.herokuapp.com/assets/images/"+req.file.filename})
             })

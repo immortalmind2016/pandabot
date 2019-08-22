@@ -64,7 +64,7 @@ const webhook=(req,res,err)=>{
                         responseToPostback(recipientId,senderId,title,page.bot)
                     }
                     else{
-                        responseAi(recipientId,senderId,message.message.text)
+                    //    responseAi(recipientId,senderId,message.message.text)
             
                     }
                 }

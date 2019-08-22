@@ -57,7 +57,7 @@ const webhook=(req,res,err)=>{
               
            
                 }
-                else if(user&&page&&page.page_id==recipientId){
+                else if(user&&page&&page.page_id==recipientId&&page.bot){
                     if(!!message.postback){
                         const postback=message.postback;
                         const title=message.postback.payload;

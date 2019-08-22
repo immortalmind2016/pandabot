@@ -90,7 +90,7 @@ if(cluster.isMaster){
   app.use("/api",index)
   
   app.use("*",(req,res,err)=>{
-    res.sendFile(path.resolve(__dirname,"build","index.html"))
+    res.sendFile(path.resolve(__dirname,"public","index.html"))
   })
 
   app.listen(process.env.PORT||80)

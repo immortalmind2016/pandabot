@@ -35,7 +35,9 @@ Router.post(
         fs.unlink( path.resolve("public","assets","images",req.params.oldimage),(err)=>{
 console.log("ERR",err)
         }) 
+        console.log(req.query , "QUERY")
         if(!req.query["type"]=="imagetemp"){
+            
             Jimp.read(
                 path.resolve("public","assets","images",req.file.filename),
              async  (err, lenna) => {

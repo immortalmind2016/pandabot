@@ -15,7 +15,7 @@ const Block=new Schema({
 Block.post("findOneAndDelete",function(doc){
  /*   let query = this.getQuery()["$and"]
     let id=query[0]._id*/
-
+ if(doc)
     Block_template.deleteOne({block:doc._id},(err)=>{
    
 

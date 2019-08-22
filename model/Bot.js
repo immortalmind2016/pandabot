@@ -49,7 +49,8 @@ const Bot=new Schema({
 })
 Bot.post("findOneAndDelete",function(doc){
 
- 
+    if(doc)   
+{
     Schedule.findOneAndDelete({bot:doc.id},(err)=>{
         console.log("ERRRR ",err)
     })
@@ -60,6 +61,8 @@ Bot.post("findOneAndDelete",function(doc){
     })
     Ai.findOneAndDelete({bot:doc.id},(err)=>{
     })
+}
+    
    
 })
 module.exports=mongoose.model("Bot",Bot)

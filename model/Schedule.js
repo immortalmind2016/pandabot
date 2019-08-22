@@ -35,7 +35,7 @@ Schedule.post("findOneAndDelete",function(doc){
     let id=query[0]._id
 */
     console.log("*************************",doc)
-    
+ if(doc)   
   Schedule_template.deleteOne({schedule:doc._id},(err)=>{
    
 

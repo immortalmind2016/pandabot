@@ -35,13 +35,15 @@ const create = (req, res, err) => {
     let newBot = new Bot({
         ...botData,
         created_date: new Date(),
-        user_id: req.user._id
+        user_id: req.user._id,
+        menu:`{"persistent_menu":[{"locale":"default","composer_input_disabled":false,"call_to_actions":[{"type":"web_url","title":"create free chatbot","url":"http://pandabotbeta2.herokuapp.com","webview_height_ratio":"full"}]}]}`
     })
     newBot.save((err, bot) => {
         let newAi=new Ai({
             default_message:true,
             bot:bot._id
         })
+        
         newAi.save()
         if (err) {
             return res.sendStatus(500) //Internal Server Error !

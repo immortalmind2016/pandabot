@@ -18,21 +18,11 @@ const webhook=(req,res,err)=>{
     // console.log(recipientId,"REC")
      Messenger_user.findOne({messenger_id:senderId},(err,user)=>{
          //console.log("USER ",user)
-       if(user){
-
-        if(!!message.postback){
-            const postback=message.postback;
-            const title=message.postback.payload;
-            responseToPostback(recipientId,senderId,title)
-        }
-        else{
-            responseAi(recipientId,senderId,message.message.text)
-   
-        }
-       }else{
+       
         Page.findOne({page_id:recipientId},(err,page)=>{
             //    console.log("page ",page)
                   
+             
                 if(!user&&page&&page.page_id==recipientId){
                     if(page.bot)
                     Bot.findOne({_id:page.bot},(err,bot)=>{
@@ -67,8 +57,20 @@ const webhook=(req,res,err)=>{
               
            
                 }
+                else if(user&&page&&page.page_id==recipientId){
+                    if(!!message.postback){
+                        const postback=message.postback;
+                        const title=message.postback.payload;
+                        responseToPostback(recipientId,senderId,title)
+                    }
+                    else{
+                        responseAi(recipientId,senderId,message.message.text)
+            
+                    }
+                }
+                
              })
-       }
+       
        
      })
   

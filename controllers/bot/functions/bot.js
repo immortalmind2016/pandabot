@@ -23,11 +23,11 @@ const webhook=(req,res,err)=>{
             //    console.log("page ",page)
             
              
-                if(user!==null&&page&&page.page_id==recipientId){
+                if(!user&&page&&page.page_id==recipientId){
                   if(page.bot)
                     Bot.findOne({_id:page.bot},(err,bot)=>{
                         Messenger_user.count({page:page._id},(err,number)=>{
-                         //   console.log("NUMBER ",number," sssssssssssssss ",bot.max_number)
+                          console.log("NUMBER ",number," sssssssssssssss ",bot.max_number)
                             if(number>=bot.max_number){
                                 
                             }else{

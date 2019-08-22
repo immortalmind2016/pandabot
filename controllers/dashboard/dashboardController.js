@@ -178,6 +178,23 @@ Page.findOne({page_id:pageId},(err,page)=>{
       
        
         page.save((err,page)=>{
+    
+            Page.findOne({bot:botId},(err,page)=>{
+                if(!!page){
+                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.welcome_message)).then(response=>{
+                        Bot.findOneAndUpdate({_id:botId},{menu:JSON.stringify(data)},(err,bot)=>{
+                            res.sendStatus(200) 
+                        })
+                        
+                    }).catch((e)=>{
+                     console.log(e)
+                    })
+                
+                }else{
+                    res.sendStatus(404)
+                }
+            }).populate("bot")
+          
             res.json({page}) 
         })
       
@@ -195,7 +212,21 @@ Page.findOne({page_id:pageId},(err,page)=>{
             })
         newPage.save((err,page)=>{
           
-
+            Page.findOne({bot:botId},(err,page)=>{
+                if(!!page){
+                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.welcome_message)).then(response=>{
+                        Bot.findOneAndUpdate({_id:botId},{menu:JSON.stringify(data)},(err,bot)=>{
+                            res.sendStatus(200) 
+                        })
+                        
+                    }).catch((e)=>{
+                     console.log(e)
+                    })
+                
+                }else{
+                    res.sendStatus(404)
+                }
+            }).populate("bot")
             res.json({page})
         })
  

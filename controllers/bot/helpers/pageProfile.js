@@ -179,7 +179,7 @@ responseAi=(pageId,senderId,message)=>{
                console.log(ais,"////",message)
                ais.forEach((ai)=>{
                  
-                if(ai.default_message){
+               /* if(ai.default_message){
                     if(ai.type=="text"){
                         sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
                         sent=true;
@@ -192,7 +192,7 @@ responseAi=(pageId,senderId,message)=>{
 
                         })
                     }
-                   }else{
+                   }else{*/
                     const questions=ai.messages.split(",");
                  
                     questions.forEach((q)=>{
@@ -216,7 +216,7 @@ responseAi=(pageId,senderId,message)=>{
                          }
                         }
                     })
-                   }
+              //     }
                    
                   
                })

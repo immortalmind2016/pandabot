@@ -8,6 +8,7 @@ var multer  = require('multer')
 const facebook=require("../../config/facebook_passport")
 const path=require("path")
 const fs=require("fs")
+var Jimp = require("jimp");
 
 const imageDest="/assets/images/"
 const storage = multer.diskStorage({
@@ -34,8 +35,17 @@ Router.post(
         fs.unlink( path.resolve("public","assets","images",req.params.oldimage),(err)=>{
 console.log("ERR",err)
         }) 
-        console.log(req.file)
-        res.json({img:"https://pandabotbeta2.herokuapp.com/assets/images/"+req.file.filename})
+        Jimp.read(
+            "/"+req.file.filename,
+          async  (err, lenna) => {
+              if (err) throw err;
+           await lenna
+                .resize(500, 260) // resize
+                .write("./"+req.file.filename); // save
+                console.log(req.file)
+                res.json({img:"https://pandabotbeta2.herokuapp.com/assets/images/"+req.file.filename})
+            })
+   
     }
 )
 

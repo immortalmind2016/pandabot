@@ -177,22 +177,11 @@ responseAi=(pageId,senderId,message)=>{
            Ai.find({bot:page.bot},(err,ais)=>{
                let sent=false;
                console.log(ais,"////",message)
+               let found=false;
                ais.forEach((ai)=>{
                  
-               /* if(ai.default_message){
-                    if(ai.type=="text"){
-                        sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
-                        sent=true;
-                    }else if (ai.type=="block"){
-                        console.log("AI TPE BLOCK")
-                        Block_template.find({block:ai.payload},(err,templates)=>{
-                            console.log("AI TPE BLOCK" ,templates)
-
-                            sendMessage(senderId,page.access_token,templates)
-
-                        })
-                    }
-                   }else{*/
+               
+                 
                     const questions=ai.messages.split(",");
                  
                     questions.forEach((q)=>{
@@ -214,12 +203,29 @@ responseAi=(pageId,senderId,message)=>{
                              }
                            
                          }
+                         found=true;
                         }
                     })
-              //     }
+                   
                    
                   
                })
+               if(!found){
+                let ai=ais.filter((ai)=>ai.default_message)[0]
+                if(ai.type=="text"){
+                    sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
+                    sent=true;
+                }else if (ai.type=="block"){
+                    console.log("AI TPE BLOCK")
+                    Block_template.find({block:ai.payload},(err,templates)=>{
+                        console.log("AI TPE BLOCK" ,templates)
+
+                        sendMessage(senderId,page.access_token,templates)
+
+                    })
+                }
+              
+               }
              
 
            })

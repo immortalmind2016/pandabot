@@ -42,7 +42,7 @@ const webhook=(req,res,err)=>{
                                     if(!!message.postback){
                                         const postback=message.postback;
                                         const title=message.postback.payload;
-                                        responseToPostback(recipientId,senderId,title)
+                                        responseToPostback(recipientId,senderId,title,page.bot)
                                     }
                                     else{
                                         responseAi(recipientId,senderId,message.message.text)
@@ -61,7 +61,7 @@ const webhook=(req,res,err)=>{
                     if(!!message.postback){
                         const postback=message.postback;
                         const title=message.postback.payload;
-                        responseToPostback(recipientId,senderId,title)
+                        responseToPostback(recipientId,senderId,title,page.bot)
                     }
                     else{
                         responseAi(recipientId,senderId,message.message.text)

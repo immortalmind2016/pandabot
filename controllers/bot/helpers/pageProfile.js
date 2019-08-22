@@ -137,9 +137,9 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
 
     
 }
-responseToPostback=(pageId,senderId,title)=>{
+responseToPostback=(pageId,senderId,title,botId)=>{
     console.log(pageId)
-    Page.findOne({page_id:pageId},(err,page)=>{
+    Page.findOne({page_id:pageId,bot:botId},(err,page)=>{
         if(!!page){
             switch(title){
                 case "<GET_STARTED_PAYLOAD>" :{

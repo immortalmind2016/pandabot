@@ -178,7 +178,7 @@ responseAi=(pageId,senderId,message)=>{
                let sent=false;
                console.log(ais,"////",message)
                let found=false;
-               ais.forEach((ai)=>{
+               ais.forEach((ai,index)=>{
                  
                
                  
@@ -206,26 +206,27 @@ responseAi=(pageId,senderId,message)=>{
                          found=true;
                         }
                     })
+                    if(!found&&index==ais.length-1){
+                        console.log("NOT FOUND")
+                     let ai=ais.filter((ai)=>ai.default_message)[0]
+                     if(ai.type=="text"){
+                         sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
+                         sent=true;
+                     }else if (ai.type=="block"){
+                         console.log("AI TPE BLOCK")
+                         Block_template.find({block:ai.payload},(err,templates)=>{
+                             console.log("AI TPE BLOCK" ,templates)
+     
+                             sendMessage(senderId,page.access_token,templates)
+     
+                         })
+                     }
                    
+                    }
                    
                   
                })
-               if(!found){
-                let ai=ais.filter((ai)=>ai.default_message)[0]
-                if(ai.type=="text"){
-                    sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
-                    sent=true;
-                }else if (ai.type=="block"){
-                    console.log("AI TPE BLOCK")
-                    Block_template.find({block:ai.payload},(err,templates)=>{
-                        console.log("AI TPE BLOCK" ,templates)
-
-                        sendMessage(senderId,page.access_token,templates)
-
-                    })
-                }
-              
-               }
+          
              
 
            })

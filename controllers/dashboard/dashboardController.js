@@ -182,7 +182,7 @@ Page.findOne({page_id:pageId},(err,page)=>{
             Page.findOne({bot:botId},(err,page)=>{
                 console.log(page.bot,"ACCESS ",page.access_token)
                 if(!!page){
-                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.welcome_message)).then(response=>{
+                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.menu)).then(response=>{
                      console.log(response.data)
                         
                     }).catch((e)=>{
@@ -190,7 +190,6 @@ Page.findOne({page_id:pageId},(err,page)=>{
                     })
                 
                 }else{
-                    res.sendStatus(404)
                 }
             }).populate("bot")
           
@@ -212,16 +211,16 @@ Page.findOne({page_id:pageId},(err,page)=>{
         newPage.save((err,page)=>{
           
             Page.findOne({bot:botId},(err,page)=>{
+                console.log(page.bot,"ACCESS ",page.access_token)
                 if(!!page){
-                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.welcome_message)).then(response=>{
-                      
+                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.menu)).then(response=>{
+                     console.log(response.data)
                         
                     }).catch((e)=>{
-                 //    console.log(e)
+                     console.log(e)
                     })
                 
                 }else{
-                    res.sendStatus(404)
                 }
             }).populate("bot")
             res.json({page})

@@ -184,9 +184,17 @@ responseAi=(pageId,senderId,message)=>{
                        if(message.trim().includes(q.trim())){
                         if(sent!=true)
                         {
-                            console.log("TRUEEE  ",[{message:`[{"text":"${ai.replay}"]`}]),
-                            sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
-                            sent=true;
+                            console.log("TRUEEE  ",[{message:`[{"text":"${ai.replay}"]`}])
+                            if(ai.type=="text"){
+                                sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
+                                sent=true;
+                            }else if (ai.type=="block"){
+                                Block_template.findOne({block:ai.payload},(err,templates)=>{
+                                    sendMessage(senderId,page.access_token,templates)
+
+                                })
+                            }
+                          
                         }
                        }
                    })

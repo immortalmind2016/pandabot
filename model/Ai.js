@@ -11,6 +11,14 @@ const Ai=new Schema({
         default:""
     },
     replay:String,
+    type:{
+        type:String,
+        default:"text"
+    },
+    payload:{
+        type:String,
+        default:null
+    }
 
 })
 

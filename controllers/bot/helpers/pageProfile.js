@@ -139,7 +139,7 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
 }
 responseToPostback=(pageId,senderId,title,botId)=>{
     console.log(pageId)
-    Page.findOne({page_id:pageId,bot:botId},(err,page)=>{
+    Page.findOne({$and:[{page_id:pageId},{bot:botId}]},(err,page)=>{
         if(!!page){
             switch(title){
                 case "<GET_STARTED_PAYLOAD>" :{
@@ -152,7 +152,7 @@ responseToPostback=(pageId,senderId,title,botId)=>{
                 }
                 default :{
                     console.log("TITLE ",title)
-                    Block.findOne({_id:title},(err,block)=>{
+                    Block.findOne({_id:title,bot:botId},(err,block)=>{
                         if(!!block)
                         Block_template.find({block:block._id},(err,templates)=>{
                             sendMessage(senderId,page.access_token,templates)

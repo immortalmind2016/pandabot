@@ -189,7 +189,10 @@ responseAi=(pageId,senderId,message)=>{
                                 sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
                                 sent=true;
                             }else if (ai.type=="block"){
+                                console.log("AI TPE BLOCK")
                                 Block_template.findOne({block:ai.payload},(err,templates)=>{
+                                    console.log("AI TPE BLOCK" ,templates)
+
                                     sendMessage(senderId,page.access_token,templates)
 
                                 })

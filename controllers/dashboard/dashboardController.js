@@ -168,16 +168,15 @@ Page.findOne({page_id:pageId},(err,page)=>{
         page.access_token=accessToken;
         page.img_url=imgUrl
       
-        Page.findOneAndUpdate({bot:botId},{bot_id:null},(err,doc)=>{
-            page.save((err,page)=>{
-                res.json({page}) 
-            })
+       
+        page.save((err,page)=>{
+            res.json({page}) 
         })
       
     }else{
     
        
-        Page.findOneAndUpdate({bot:botId},{bot_id:null},(err,doc)=>{
+     
         
             let newPage=new Page({
                 name:pageName,
@@ -191,7 +190,7 @@ Page.findOne({page_id:pageId},(err,page)=>{
 
             res.json({page})
         })
-    })
+ 
     }
 
 })

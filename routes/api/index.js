@@ -33,7 +33,7 @@ Router.post(
         console.log("assets/images/"+req.params.oldimage)
         fs.unlink( path.resolve("public","assets","images",req.params.oldimage),(err)=>{
 console.log("ERR",err)
-        })
+        }) 
         console.log(req.file)
         res.json({img:"https://pandabotbeta2.herokuapp.com/assets/images/"+req.file.filename})
     }

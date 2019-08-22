@@ -7,7 +7,7 @@ const axios=require("axios")
 module.exports=passport.use(new FacebookStrategy({
     clientID: "2245399952381834",
     clientSecret: "27ef343db9e7e20a644aaf16e0270592",
-    callbackURL: "https://08e28f66.ngrok.io/api/user/auth/facebook/callback"
+    callbackURL: "https://pandabotbeta2.herokuapp.com/api/user/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOne({facebook_id:profile.id},(err,user)=>{

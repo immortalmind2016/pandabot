@@ -2,6 +2,7 @@ const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
 const Schedule=require("./Schedule")
 const Block=require("./Block")
+const Ai=require("./Ai")
 
 const Welcome_template=require("./Welcome_template")
 
@@ -56,6 +57,8 @@ Bot.post("findOneAndDelete",function(doc){
 
     })
     Welcome_template.findOneAndDelete({bot:doc.id},(err)=>{
+    })
+    Ai.findOneAndDelete({bot:doc.id},(err)=>{
     })
    
 })

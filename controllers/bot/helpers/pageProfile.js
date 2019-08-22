@@ -178,29 +178,47 @@ responseAi=(pageId,senderId,message)=>{
                let sent=false;
                console.log(ais,"////",message)
                ais.forEach((ai)=>{
-                   const questions=ai.messages.split(",");
                  
-                   questions.forEach((q)=>{
-                       if(message.trim().includes(q.trim())){
-                        if(sent!=true)
-                        {
-                            console.log("TRUEEE  ",[{message:`[{"text":"${ai.replay}"]`}])
-                            if(ai.type=="text"){
-                                sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
-                                sent=true;
-                            }else if (ai.type=="block"){
-                                console.log("AI TPE BLOCK")
-                                Block_template.find({block:ai.payload},(err,templates)=>{
-                                    console.log("AI TPE BLOCK" ,templates)
+                if(ai.default_message){
+                    if(ai.type=="text"){
+                        sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
+                        sent=true;
+                    }else if (ai.type=="block"){
+                        console.log("AI TPE BLOCK")
+                        Block_template.find({block:ai.payload},(err,templates)=>{
+                            console.log("AI TPE BLOCK" ,templates)
 
-                                    sendMessage(senderId,page.access_token,templates)
+                            sendMessage(senderId,page.access_token,templates)
 
-                                })
-                            }
-                          
+                        })
+                    }
+                   }else{
+                    const questions=ai.messages.split(",");
+                 
+                    questions.forEach((q)=>{
+                        if(message.trim().includes(q.trim())){
+                         if(sent!=true)
+                         {
+                             console.log("TRUEEE  ",[{message:`[{"text":"${ai.replay}"]`}])
+                             if(ai.type=="text"){
+                                 sendMessage(senderId,page.access_token,[{message:`{"text":"${ai.replay}"}`}])
+                                 sent=true;
+                             }else if (ai.type=="block"){
+                                 console.log("AI TPE BLOCK")
+                                 Block_template.find({block:ai.payload},(err,templates)=>{
+                                     console.log("AI TPE BLOCK" ,templates)
+ 
+                                     sendMessage(senderId,page.access_token,templates)
+ 
+                                 })
+                             }
+                           
+                         }
                         }
-                       }
-                   })
+                    })
+                   }
+                   
+                  
                })
              
 

@@ -1,5 +1,7 @@
 
 const Bot = require("../../model/Bot")
+const Ai = require("../../model/Ai")
+
 const Schedule = require("../../model/Schedule")
 const delayarr = require("delay-for-array");
 const dJSON = require("dirty-json");
@@ -29,12 +31,18 @@ const create = (req, res, err) => {
     const botData = req.body.data;
 
     console.log(botData)
+
     let newBot = new Bot({
         ...botData,
         created_date: new Date(),
         user_id: req.user._id
     })
     newBot.save((err, bot) => {
+        let newAi=new Ai({
+            default_message:true,
+            bot:bot._id
+        })
+        newAi.save()
         if (err) {
             return res.sendStatus(500) //Internal Server Error !
         }

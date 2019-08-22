@@ -18,6 +18,10 @@ const Ai=new Schema({
     payload:{
         type:String,
         default:null
+    },
+    default_message:{
+        type:Boolean,
+        default:false
     }
 
 })

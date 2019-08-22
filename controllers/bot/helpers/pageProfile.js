@@ -201,9 +201,9 @@ responseAi=(pageId,senderId,message)=>{
  
                                  })
                              }
-                           
+                             found=true;
                          }
-                         found=true;
+                        
                         }
                     })
                     if(!found&&index==ais.length-1){

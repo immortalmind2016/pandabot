@@ -169,7 +169,7 @@ Page.findOne({page_id:pageId},(err,page)=>{
               "payload":"<GET_STARTED_PAYLOAD>"
             }
           }).then((response)=>{
-                console.log("RESPONSE HERE ",response.data)
+           //     console.log("RESPONSE HERE ",response.data)
           })
     if(!!page){
         page.bot=botId;
@@ -180,13 +180,13 @@ Page.findOne({page_id:pageId},(err,page)=>{
         page.save((err,page)=>{
     
             Page.findOne({bot:botId},(err,page)=>{
-                console.log(page.bot,"ACCESS ",page.accessToken)
+                console.log(page.bot,"ACCESS ",page.access_token)
                 if(!!page){
                     axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.welcome_message)).then(response=>{
-                    
+                     console.log(response.data)
                         
                     }).catch((e)=>{
-                    // console.log(e)
+                     console.log(e)
                     })
                 
                 }else{

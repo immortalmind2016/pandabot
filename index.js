@@ -58,7 +58,7 @@ if(cluster.isMaster){
   app.use(bodyParser.urlencoded({extended:false}))
   app.use(cors())
          app.use(function(req, res, next) {
-          var allowedOrigins = ['https://d2a2bac9.ngrok.io', 'http://localhost:2019', 'http://127.0.0.1:9000', 'http://localhost:9000',""];
+          var allowedOrigins = ['https://d2a2bac9.ngrok.io', 'http://localhost:2019', 'http://127.0.0.1:9000', 'http://localhost:9000',"https://08e28f66.ngrok.io"];
           var origin = req.headers.origin;
           if(allowedOrigins.indexOf(origin) > -1){
                res.setHeader('Access-Control-Allow-Origin', origin);
@@ -88,10 +88,10 @@ if(cluster.isMaster){
 
   app.use("/api/dashboard",dashboard)
   app.use("/api",index)
-  /*
+  
   app.use("*",(req,res,err)=>{
     res.sendFile(path.resolve(__dirname,"build","index.html"))
-  })*/
+  })
 
   app.listen(process.env.PORT||80)
 

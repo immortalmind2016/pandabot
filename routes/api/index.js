@@ -35,7 +35,7 @@ Router.post(
 console.log("ERR",err)
         })
         console.log(req.file)
-        res.json({img:"https://pandabotbeta.herokuapp.com/assets/images/"+req.file.filename})
+        res.json({img:"http://pandabotai.eu-4.evennode.com/assets/images/"+req.file.filename})
     }
 )
 

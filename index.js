@@ -85,7 +85,7 @@ if(cluster.isMaster){
   app.use("/api/user",user)
   app.use("/api/bot",bot)
   app.use("/api/admin",admin)
-
+ 
   app.use("/api/dashboard",dashboard)
   app.use("/api",index)
   

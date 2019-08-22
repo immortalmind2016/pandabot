@@ -152,7 +152,7 @@ responseToPostback=(pageId,senderId,title,botId)=>{
                 }
                 default :{
                     console.log("TITLE ",title)
-                    Block.findOne({_id:title,bot:botId},(err,block)=>{
+                    Block.findOne({$and:[{_id:title},{bot:botId}]},(err,block)=>{
                         if(!!block)
                         Block_template.find({block:block._id},(err,templates)=>{
                             sendMessage(senderId,page.access_token,templates)

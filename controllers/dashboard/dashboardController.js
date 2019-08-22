@@ -184,7 +184,7 @@ Page.findOne({page_id:pageId},(err,page)=>{
             Page.findOne({bot:botId},(err,page)=>{
                 console.log(page.bot,"ACCESS ",page.access_token)
                 if(!!page){
-                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.menu)).then(response=>{
+                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.parse(page.bot.menu)).then(response=>{
                      console.log(response.data)
                         
                     }).catch((e)=>{
@@ -215,7 +215,7 @@ Page.findOne({page_id:pageId},(err,page)=>{
             Page.findOne({bot:botId},(err,page)=>{
                 console.log(page.bot,"ACCESS ",page.access_token)
                 if(!!page){
-                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.stringify(page.bot.menu)).then(response=>{
+                    axios.post("https://graph.facebook.com/v3.3/me/messenger_profile?access_token="+page.access_token,JSON.parse(page.bot.menu)).then(response=>{
                      console.log(response.data)
                         
                     }).catch((e)=>{

@@ -36,18 +36,7 @@ const create = (req, res, err) => {
         ...botData,
         created_date: new Date(),
         user_id: req.user._id,
-        menu:JSON.stringify({persistent_menu:[
-            {
-              locale: "default",
-              composer_input_disabled: false,
-              call_to_actions: [{
-                title: "create free chatbot",
-    type: "web_url",
-    url: "http://pandabotbeta2.herokuapp.com",
-    webview_height_ratio: "full",
-              }]
-            }
-          ]})
+        menu:"{\"persistent_menu\":[{\"locale\":\"default\",\"composer_input_disabled\":false,\"call_to_actions\":[{\"title\":\"create free chatbot\",\"type\":\"web_url\",\"url\":\"http://pandabotbeta2.herokuapp.com\",\"webview_height_ratio\":\"full\"}]}]}"
     })
     newBot.save((err, bot) => {
         let newAi=new Ai({

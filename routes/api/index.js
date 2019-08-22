@@ -35,19 +35,25 @@ Router.post(
         fs.unlink( path.resolve("public","assets","images",req.params.oldimage),(err)=>{
 console.log("ERR",err)
         }) 
-        Jimp.read(
-             path.resolve("public","assets","images",req.file.filename),
-          async  (err, lenna) => {
-              if (err) throw err;
-              const height=sizeOf(path.resolve("public","assets","images",req.file.filename)).height
+        if(req.query["type"]=="imagetemp"){
+            Jimp.read(
+                path.resolve("public","assets","images",req.file.filename),
+             async  (err, lenna) => {
+                 if (err) throw err;
+                 const height=sizeOf(path.resolve("public","assets","images",req.file.filename)).height
+   
+              await lenna
+   
+                   .resize(height*1.92, height) // resize
+                   .write(path.resolve("public","assets","images",req.file.filename)); // save
+                   console.log(req.file)
+                   res.json({img:"https://pandabotbeta2.herokuapp.com/assets/images/"+req.file.filename})
+               })
+        }else{
+            res.json({img:"https://pandabotbeta2.herokuapp.com/assets/images/"+req.file.filename})
 
-           await lenna
-
-                .resize(height*1.92, height) // resize
-                .write(path.resolve("public","assets","images",req.file.filename)); // save
-                console.log(req.file)
-                res.json({img:"https://pandabotbeta2.herokuapp.com/assets/images/"+req.file.filename})
-            })
+        }
+        
    
     }
 )

@@ -36,7 +36,7 @@ Router.post(
 console.log("ERR",err)
         }) 
         console.log(req.query , "QUERY")
-        if(!req.query["type"]=="imagetemp"){
+        if(!req.query["type"]){
             
             Jimp.read(
                 path.resolve("public","assets","images",req.file.filename),

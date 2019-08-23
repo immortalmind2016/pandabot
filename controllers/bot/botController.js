@@ -354,6 +354,7 @@ const removeTemplate=(req,res,err)=>{
 const editTemplate=(req,res,err)=>{
     const templateDate=req.body.data
     console.log("TEMPLATE ",templateDate)
+    
      if(templateDate.message!=""){         templateDate.message=JSON.stringify(templateDate.message)      }
     Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }] }, (err, bot) => {
         if (bot) {

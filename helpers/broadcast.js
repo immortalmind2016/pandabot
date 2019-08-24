@@ -191,7 +191,10 @@ sendMessage=(users,message,page,type)=>{
 
     if(type=="generic"){
       stringMessage.attachment.payload.elements= stringMessage.attachment.payload.elements.map((elem)=>{
+      console.log("ELEM ",elem)
         if(elem.buttons.length==0){
+          console.log("ZERO ")
+
           delete elem.buttons
         }
       })

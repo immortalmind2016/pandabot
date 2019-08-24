@@ -133,6 +133,8 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
             let jsonMessage = JSON.parse(templates[i].message)
             if (jsonMessage.type == "generic") {
                 jsonMessage.attachment.payload.elements = jsonMessage.attachment.payload.elements.map((elem) => {
+                    console.log("ELEM ",elem)
+
                     if (elem.buttons.length == 0) {
 
                         delete elem.buttons
@@ -141,8 +143,9 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
                     }
                     return elem
                 })
-
+                console.log("ARRRR" , jsonMessage.attachment.payload.elements)
             }
+   
             console.log("ELSEEE")
             axios.post("https://graph.facebook.com/v3.3/me/messages?access_token=" + accessToken, {
                 recipient: {

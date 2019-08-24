@@ -172,7 +172,7 @@ sendMessage=(users,message,page,type)=>{
            let stringMessage=JSON.stringify(message)
            
     if(type=="generic"){
-      stringMessage.attachment.payload.elements= stringMessage.attachment.payload.elements.map((elem)=>{
+      stringMessage.message.attachment.payload.elements= stringMessage.attachment.payload.elements.map((elem)=>{
         if(elem.buttons.length==0){
           delete elem.buttons
         }

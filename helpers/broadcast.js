@@ -197,7 +197,9 @@ sendMessage=(users,message,page,type)=>{
 
           delete elem.buttons
           
+          
         }
+        return elem
       })
       console.log("TYPE : ",type,stringMessage.attachment.payload.elements)
 

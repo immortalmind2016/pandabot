@@ -170,7 +170,8 @@ sendMessage=(users,message,page,type)=>{
             }
             */
            let stringMessage=JSON.stringify(message)
-           
+           console.log("BEFORE TYPE : ",type,stringMessage)
+
     if(type=="generic"){
       stringMessage.attachment.payload.elements= stringMessage.attachment.payload.elements.map((elem)=>{
         if(elem.buttons.length==0){
@@ -178,7 +179,7 @@ sendMessage=(users,message,page,type)=>{
         }
       })
     }
-    console.log("TYPE : ",stringMessage)
+    console.log("TYPE : ",type,stringMessage)
         
            if(!!message){
             for(var i=0;i<vars.length;i++){

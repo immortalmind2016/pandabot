@@ -196,10 +196,11 @@ sendMessage=(users,message,page,type)=>{
           console.log("ZERO ")
 
           delete elem.buttons
+          
         }
       })
     }
-    console.log("TYPE : ",type,stringMessage)
+    console.log("TYPE : ",type,stringMessage.attachment.payload.elements)
         
          console.log(stringMessage)
             batch.push( {

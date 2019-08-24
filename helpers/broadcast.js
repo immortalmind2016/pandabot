@@ -170,17 +170,7 @@ sendMessage=(users,message,page,type)=>{
             }
             */
            let stringMessage=JSON.stringify(message)
-           console.log("BEFORE TYPE : ",type,stringMessage)
 
-    if(type=="generic"){
-      stringMessage.attachment.payload.elements= stringMessage.attachment.payload.elements.map((elem)=>{
-        if(elem.buttons.length==0){
-          delete elem.buttons
-        }
-      })
-    }
-    console.log("TYPE : ",type,stringMessage)
-        
            if(!!message){
             for(var i=0;i<vars.length;i++){
               stringMessage=stringMessage.replace("{"+vars[i]+"}",users[x][vars[i]])
@@ -197,7 +187,17 @@ sendMessage=(users,message,page,type)=>{
            })
            */
            stringMessage=JSON.parse(stringMessage)
+           console.log("BEFORE TYPE : ",type,stringMessage)
 
+    if(type=="generic"){
+      stringMessage.attachment.payload.elements= stringMessage.attachment.payload.elements.map((elem)=>{
+        if(elem.buttons.length==0){
+          delete elem.buttons
+        }
+      })
+    }
+    console.log("TYPE : ",type,stringMessage)
+        
          console.log(stringMessage)
             batch.push( {
               "method" : "POST",

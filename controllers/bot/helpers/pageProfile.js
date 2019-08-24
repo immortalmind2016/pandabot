@@ -144,7 +144,6 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
                     }
                     return elem
                 })
-                console.log("ARRRR" , jsonMessage.attachment.payload.elements)
             }
    
             console.log("ELSEEE")

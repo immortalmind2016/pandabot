@@ -61,7 +61,7 @@ function sendToAll(users,templates,page,i=0){
             }else{
               let message=JSON.parse(templates[i].message)
 
-                sendMessage(users,message,page).then((data)=>{
+                sendMessage(users,message,page,templates[i].type).then((data)=>{
            
                     if(i==templates.length-1){
                   
@@ -143,13 +143,11 @@ sendTyping=(users,seconds,page)=>{
 
 }
 
-sendMessage=(users,message,page)=>{
+sendMessage=(users,message,page,type)=>{
     return new Promise((resolve,reject)=>{
         var batch=[]
         var vars=["first_name","last_name"]
 
-  
-        
           for(var x=0;x<users.length;x++){
            /* if(!!message){
               var vars=["first_name","last_name"]
@@ -172,6 +170,15 @@ sendMessage=(users,message,page)=>{
             }
             */
            let stringMessage=JSON.stringify(message)
+           
+    if(type=="generic"){
+      stringMessage.attachment.payload.elements= stringMessage.attachment.payload.elements.map((elem)=>{
+        if(elem.buttons.length==0){
+          delete elem.buttons
+        }
+      })
+    }
+        
            if(!!message){
             for(var i=0;i<vars.length;i++){
               stringMessage=stringMessage.replace("{"+vars[i]+"}",users[x][vars[i]])

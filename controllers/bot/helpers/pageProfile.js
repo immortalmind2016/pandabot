@@ -131,8 +131,8 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
         }
 
         else {
-            let jsonMessage = JSON.parse(templates[i])
-            if (jsonMessage.type == "generic") {
+         
+            if (templates[i].type == "generic") {
                 jsonMessage.attachment.payload.elements = jsonMessage.attachment.payload.elements.map((elem) => {
                     console.log("ELEM ",elem)
 
@@ -152,7 +152,7 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
                 recipient: {
                     id: senderId
                 },
-                message: jsonMessage.message
+                message: JSON.parse(templates[i].message)
             }).then((response) => {
                 //   console.log(response.data)
                 sendMessage(senderId, accessToken, templates, ++i)

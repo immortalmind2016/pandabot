@@ -51,6 +51,21 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
         if(i==templates.length){
             return 
         }
+         /* Handle Buttons inside Generic template */
+ if(templates[i].type=="generic"){
+    templates[i].attachment.payload.elements= templates[i].attachment.payload.elements.map((elem)=>{
+      if(elem.buttons.length==0){
+  
+        delete elem.buttons
+        
+        
+      }
+      return elem
+    })
+  
+  }
+  /* END Handle  Buttons inside Generic template */
+      
         if(templates[i].message==""){
             sendplugin_single(templates[i].type,senderId,templates[i]).then((data)=>{
                     console.log("DATA ",data)

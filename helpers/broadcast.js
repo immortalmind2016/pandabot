@@ -178,6 +178,7 @@ sendMessage=(users,message,page,type)=>{
         }
       })
     }
+    console.log("TYPE : ",stringMessage)
         
            if(!!message){
             for(var i=0;i<vars.length;i++){

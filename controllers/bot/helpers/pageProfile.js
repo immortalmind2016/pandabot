@@ -96,9 +96,10 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
                 }
                 console.log("************************")
                 /* Handle Buttons inside Generic template */
-                let jsonMessage = JSON.parse(message)
+                let jsonTemplate = JSON.parse(templates[i])
+                let jsonMessage=JSON.parse(message)
                 if (jsonMessage.type == "generic") {
-                    jsonMessage.attachment.payload.elements = jsonMessage.attachment.payload.elements.map((elem) => {
+                    jsonTemplate.attachment.payload.elements = jsonMessage.attachment.payload.elements.map((elem) => {
                         if (elem.buttons.length == 0) {
 
                             delete elem.buttons
@@ -130,7 +131,7 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
         }
 
         else {
-            let jsonMessage = JSON.parse(templates[i].message)
+            let jsonMessage = JSON.parse(templates[i])
             if (jsonMessage.type == "generic") {
                 jsonMessage.attachment.payload.elements = jsonMessage.attachment.payload.elements.map((elem) => {
                     console.log("ELEM ",elem)
@@ -151,7 +152,7 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
                 recipient: {
                     id: senderId
                 },
-                message: jsonMessage
+                message: jsonMessage.message
             }).then((response) => {
                 //   console.log(response.data)
                 sendMessage(senderId, accessToken, templates, ++i)

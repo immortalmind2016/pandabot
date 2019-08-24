@@ -131,9 +131,9 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
         }
 
         else {
-         
+            let jsonMessage=JSON.parse(templates[i].message)
             if (templates[i].type == "generic") {
-                jsonMessage.attachment.payload.elements = jsonMessage.attachment.payload.elements.map((elem) => {
+                jsonMessage.message.attachment.payload.elements = jsonMessage.message.attachment.payload.elements.map((elem) => {
                     console.log("ELEM ",elem)
 
                     if (elem.buttons.length == 0) {
@@ -151,7 +151,7 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
                 recipient: {
                     id: senderId
                 },
-                message: JSON.parse(templates[i].message)
+                message: jsonMessage
             }).then((response) => {
                 //   console.log(response.data)
                 sendMessage(senderId, accessToken, templates, ++i)

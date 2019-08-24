@@ -130,7 +130,7 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
         }
 
         else {
-            let jsonMessage = JSON.parse(message)
+            let jsonMessage = JSON.parse(templates[i].message)
             if (jsonMessage.type == "generic") {
                 jsonMessage.attachment.payload.elements = jsonMessage.attachment.payload.elements.map((elem) => {
                     if (elem.buttons.length == 0) {

@@ -199,8 +199,9 @@ sendMessage=(users,message,page,type)=>{
           
         }
       })
+      console.log("TYPE : ",type,stringMessage.attachment.payload.elements)
+
     }
-    console.log("TYPE : ",type,stringMessage.attachment.payload.elements)
         
          console.log(stringMessage)
             batch.push( {

@@ -51,21 +51,7 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
         if(i==templates.length){
             return 
         }
-         /* Handle Buttons inside Generic template */
- if(templates[i].type=="generic"){
-    templates[i].attachment.payload.elements= templates[i].attachment.payload.elements.map((elem)=>{
-      if(elem.buttons.length==0){
-  
-        delete elem.buttons
-        
-        
-      }
-      return elem
-    })
-  
-  }
-  /* END Handle  Buttons inside Generic template */
-      
+
         if(templates[i].message==""){
             sendplugin_single(templates[i].type,senderId,templates[i]).then((data)=>{
                     console.log("DATA ",data)
@@ -109,12 +95,27 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
               
                    }
            console.log("************************")
-
+         /* Handle Buttons inside Generic template */
+         let jsonMessage=JSON.parse(message)
+         if(jsonMessage.type=="generic"){
+            jsonMessage.attachment.payload.elements= jsonMessage.attachment.payload.elements.map((elem)=>{
+              if(elem.buttons.length==0){
+          
+                delete elem.buttons
+                
+                
+              }
+              return elem
+            })
+          
+          }
+          /* END Handle  Buttons inside Generic template */
+              
                    axios.post("https://graph.facebook.com/v3.3/me/messages?access_token="+accessToken,{
                     recipient:{
                         id:senderId
                     },
-                        message:JSON.parse(message)
+                        message:jsonMessage
                 }).then((response)=>{
                  //   console.log(response.data)
                      sendMessage(senderId,accessToken,templates,++i)
@@ -134,7 +135,7 @@ const sendMessage=(senderId,accessToken,templates,i=0)=>{
                     recipient:{
                         id:senderId
                     },
-                        message:JSON.parse(templates[i].message)
+                        message:jsonMessage
                 }).then((response)=>{
                  //   console.log(response.data)
                      sendMessage(senderId,accessToken,templates,++i)

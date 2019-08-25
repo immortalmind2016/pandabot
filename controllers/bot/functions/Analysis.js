@@ -2,9 +2,10 @@
 // start analysis
 let Bot = require("../../../model/Bot")
 
-const getAllAnalysis=async(req,res,err)=>{
+const getAllAnalysis=(req,res,err)=>{
+    console.log(req.params.botid)
  
-  const bots=await  Bot.aggregate([
+    Bot.aggregate([
         { $match: {"_id":ObjectId(req.params.botid)
     } },
 
@@ -34,7 +35,7 @@ const getAllAnalysis=async(req,res,err)=>{
 ,
 
 
-    ])
+    ], (err, bots) => {
         let arrDate=[0,0,0,0,0,0,0,0,0,0,0,0]
         let today=0;
         if(!!bots){
@@ -47,10 +48,10 @@ const getAllAnalysis=async(req,res,err)=>{
         }
         
         
-     
+        console.log("BOTS ",bots)
         res.json({ users_no:bots[0].users_no,group:arrDate , today:today })
 
- 
+    })
 }
 //end analysys
 module.exports={

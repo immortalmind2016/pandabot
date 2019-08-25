@@ -1,6 +1,6 @@
 let Bot = require("../../../model/Bot")
 let Block_template = require("../../../model/Block_template")
-
+let Block=require("../../../model/Block")
 // Start blocks
 const createBlock = async (req, res, err) => {
 
@@ -105,7 +105,6 @@ const getBlocks = async (req, res, err) => {
         }]
     })
     if (bot) {
-
 
         const blocks = await Block.find({
             bot: req.params.botid

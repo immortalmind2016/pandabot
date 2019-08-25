@@ -1,6 +1,4 @@
 
-const mongoose=require("mongoose")
-const moment =require('moment')
 let {createSchedule,removeSchedule,editSchedule,getSchedulesAll,getSchedule,
     createTemplate,
     removeTemplate,

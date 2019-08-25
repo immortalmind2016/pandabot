@@ -1,11 +1,12 @@
 
 // start analysis
 let Bot = require("../../../model/Bot")
+const ObjectId = mongoose.Types.ObjectId;
 
-const getAllAnalysis=(req,res,err)=>{
+const getAllAnalysis=async(req,res,err)=>{
     console.log(req.params.botid)
  
-    Bot.aggregate([
+  const bots= await   Bot.aggregate([
         { $match: {"_id":ObjectId(req.params.botid)
     } },
 
@@ -35,7 +36,7 @@ const getAllAnalysis=(req,res,err)=>{
 ,
 
 
-    ], (err, bots) => {
+    ])
         let arrDate=[0,0,0,0,0,0,0,0,0,0,0,0]
         let today=0;
         if(!!bots){
@@ -51,7 +52,7 @@ const getAllAnalysis=(req,res,err)=>{
         console.log("BOTS ",bots)
         res.json({ users_no:bots[0].users_no,group:arrDate , today:today })
 
-    })
+    
 }
 //end analysys
 module.exports={

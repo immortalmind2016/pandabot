@@ -93,6 +93,6 @@ if(cluster.isMaster){
     res.sendFile(path.resolve(__dirname,"public","index.html"))
   })
 
-  app.listen(process.env.PORT||80)
+  app.listen(process.env.PORT||8000)
 
 }

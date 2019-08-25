@@ -75,7 +75,7 @@ const getWelcomeTemplates =async(req,res,err)=>{
      if(!bot){
          return res.sendStatus(404)
      }
-     const template = await Welcome_template.find({bot:bot._id})
+     const templates = await Welcome_template.find({bot:bot._id})
          res.json({templates})
  
 

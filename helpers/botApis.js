@@ -1,6 +1,6 @@
 
 const promisify=require("util").promisify
-const request=require("request")
+const request = require("request");
 var qs = require('qs');
 sendTyping=async(users,seconds,page)=>{
     return new Promise((resolve,reject)=>{

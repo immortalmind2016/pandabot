@@ -1,7 +1,6 @@
 
 
-const request = require("request");
-const delayarr = require("delay-for-array");
+
 const Block_template=require("../model/Block_template")
 const User_attr=require("../model/User_attr")
 const {sendMessage,sendTyping} =require("./botApis")

@@ -10,7 +10,6 @@ const createWelcomeTemplate =async(req,res,err)=>{
         if (bot) {
             const templateDate=req.body.data
              
-            console.log(templateDate)
 
                  if(templateDate.message!="")    
                     templateDate.message=templateDate.message!=""?JSON.stringify(templateDate.message):templateDate.message

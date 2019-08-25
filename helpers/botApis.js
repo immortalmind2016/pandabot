@@ -2,7 +2,7 @@
 const promisify=require("util").promisify
 const request = require("request");
 var qs = require('qs');
-sendTyping=async(users,seconds,page)=>{
+sendTypingBatch=async(users,seconds,page)=>{
     return new Promise((resolve,reject)=>{
         var batch=[]
        // console.log("INSIDE SEND TYPING")
@@ -42,7 +42,7 @@ sendTyping=async(users,seconds,page)=>{
   
   }
   
-  sendMessage=(users,message,page,type)=>{
+  sendMessageBatch=(users,message,page,type)=>{
       return new Promise((resolve,reject)=>{
           var batch=[]
           var vars=["first_name","last_name"]
@@ -131,6 +131,6 @@ sendTyping=async(users,seconds,page)=>{
 
   
   module.exports={
-      sendMessage,
-      sendTyping
+      sendMessageBatch,
+      sendTypingBatch
   }

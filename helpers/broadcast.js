@@ -3,7 +3,7 @@
 
 const Block_template=require("../model/Block_template")
 const User_attr=require("../model/User_attr")
-const {sendMessage,sendTyping} =require("./botApis")
+const {sendMessageBatch,sendTypingBatch} =require("./botApis")
 const {sendplugin} =require("./plugins")
 function sendToAll(users,templates,page,i=0){
   
@@ -37,7 +37,7 @@ function sendToAll(users,templates,page,i=0){
                  }else if(data=="typing"){
               //   console.log("TYPING ")
               //     console.log("TYPING 2")
-                   sendTyping(users,templates[i].seconds*1000,page).then((data)=>{
+                   sendTypingBatch(users,templates[i].seconds*1000,page).then((data)=>{
                 //     console.log("DATA ",data)
                     if(i==templates.length-1){
 

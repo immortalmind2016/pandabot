@@ -97,7 +97,7 @@ const sendMessage = (senderId, accessToken, templates, i = 0) => {
                 console.log("************************")
                 /* Handle Buttons inside Generic template */
                 let jsonTemplate = templates[i]
-                let jsonMessage=JSON.parse( templates[i].message)
+                let jsonMessage=JSON.parse(message)
                 if (jsonTemplate.type == "generic") {
                     jsonMessage.attachment.payload.elements = jsonMessage.attachment.payload.elements.map((elem) => {
                         if (elem.buttons.length == 0) {

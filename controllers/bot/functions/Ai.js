@@ -6,7 +6,7 @@ let Ai = require("../../../model/Ai")
 
 const createAi =async(req, res, err) => {
     const aiData = req.body.data
-    const bot=Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }]})
+    const bot=await Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }]})
         if (bot) {
             let ai = new Ai({
                 ...aiData,
@@ -28,7 +28,7 @@ const createAi =async(req, res, err) => {
 }
 
 const removeAi = async (req, res, err) => {
-    const bot=Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }] })
+    const bot=await Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }] })
         if (bot) {
            await  Ai.findOneAndRemove({ $and: [{ _id: req.params.aiid }, { bot: bot._id }] })
             return res.sendStatus(200)

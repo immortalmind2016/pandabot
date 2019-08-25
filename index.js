@@ -53,6 +53,8 @@ if(cluster.isMaster){
 }else{
   
   console.log("START child")
+  app.use(helmet())
+
   app.use(express.static("public"))
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended:false}))

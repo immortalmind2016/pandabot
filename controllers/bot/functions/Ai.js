@@ -41,7 +41,7 @@ const removeAi = async (req, res, err) => {
 }
 const editAi = async(req, res, err) => {
     const aiData = req.body.data;
-    const bot=Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }] })
+    const bot= await Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }] })
         if (bot) {
            const ai=await Ai.findOneAndUpdate({ $and: [{ _id: req.params.aiid }, { bot: bot._id }] }, { ...aiData }, { new: true })
                return  res.json({ ai })

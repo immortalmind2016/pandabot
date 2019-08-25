@@ -2,10 +2,7 @@
 
 const Router=require("express").Router();
 const indexController=require("../../controllers/index/indexController")
-const passport=require("../../config/jwt_passport")
-var jwt = require('jsonwebtoken');
 var multer  = require('multer')
-const facebook=require("../../config/facebook_passport")
 const path=require("path")
 const fs=require("fs")
 var Jimp = require("jimp");

@@ -40,6 +40,7 @@ function sendToAll(users,templates,page,i=0){
                    sendTypingBatch(users,templates[i].seconds*1000,page).then((data)=>{
                 //     console.log("DATA ",data)
                     if(i==templates.length-1){
+                      resolve(data)
 
                     }else{
                         sendToAll(users,templates,page,++i)
@@ -55,7 +56,7 @@ function sendToAll(users,templates,page,i=0){
                }).catch((e)=>{
         
                })
-               resolve("")
+            
             }else{
               let message=JSON.parse(templates[i].message)
 
@@ -67,7 +68,7 @@ function sendToAll(users,templates,page,i=0){
                         sendToAll(users,templates,page,++i)
     
                     }
-                    resolve("")
+                    resolve(data)
                 })
                
             }

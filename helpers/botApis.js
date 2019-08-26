@@ -119,8 +119,8 @@ sendTypingBatch=async(users,seconds,page)=>{
                 request.post("https://graph.facebook.com/v4.1/?access_token="+page.access_token, {
                       json:  {batch},
                   },(err,resp,body)=>{
-                   console.log("BODY ",body)
-                      resolve(body)
+            
+                      resolve(body.filter((ob)=>ob.code==200))
                   })
       })
   

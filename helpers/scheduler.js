@@ -80,16 +80,16 @@ schedules.forEach((schedule)=>{
                                     //       console.log("INDEX ",index , "******* ",batches[index])
                                          sendToAll(batches[index],messages,page).then((data)=>{
                                             counter+=batches[index].length;
-                                           //   console.log("COUNTER ",counter ,data )
+                                             console.log("COUNTER ",counter ,data )
                                                 if(counter%100000==0){
-                                                    Schedule.findOneAndUpdate({_id:schedule._id},{sent:true,numbers:counter},{new:true},(err,doc)=>{
-                                                        console.log("DOC ",doc)
+                                                    Schedule.findOneAndUpdate({_id:schedule._id},{sent:true,numbers:data.length},{new:true},(err,doc)=>{
+                                                        
                                                     });
                                                 
                                                 }
                                                 if(index==batches.length-1){
                                           
-                                                    Schedule.findOneAndUpdate({_id:schedule._id},{sent:true,numbers:counter},{new:true},(err,doc)=>{
+                                                    Schedule.findOneAndUpdate({_id:schedule._id},{sent:true,numbers:data.length},{new:true},(err,doc)=>{
                                                 //        console.log("DOC ",doc)
                                                     });
                 

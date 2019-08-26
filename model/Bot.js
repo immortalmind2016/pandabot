@@ -46,6 +46,7 @@ const Bot=new Schema({
     }
     ,
     created_date:Date,
+    last_send_now_numbers:0
 })
 Bot.post("findOneAndDelete",function(doc){
 

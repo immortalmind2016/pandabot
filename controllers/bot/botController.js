@@ -45,6 +45,16 @@ let{
 } =require("./functions/Welcome")
 
 
+let{
+    createSendTemplate,
+    removeSendTemplate,
+    editSendTemplate,
+    getSendTemplates,
+    startSend
+} =require("./functions/Send")
+
+
+
 /*
 const options = {
   stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
@@ -104,6 +114,13 @@ module.exports={
     editWelcomeTemplate,
     getWelcomeTemplates,
 
+    createSendTemplate,
+    removeSendTemplate,
+    editSendTemplate,
+    getSendTemplates,
+    startSend,
+    
+    
     createAi,
     removeAi,
     editAi,

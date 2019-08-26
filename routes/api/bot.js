@@ -525,4 +525,87 @@ Router.get("/webhook/",botController.setWebhook)
  Router.get("/welcome/get/:botid/",passport.authenticate("jwt",{session:false}),botController.getWelcomeTemplates)
 
  /* END WELCOME TEMPLATE ROUTE */
+
+
+
+ 
+  /* START SEND TEMPLATE ROUTE */
+
+
+/*
+ @url api/dashboard/ai/create/:botid
+ @method Post
+ @type Private
+ @recieve 
+ @params botid
+ @desc
+  for creating ai
+  return created ai data
+  
+  */
+
+ Router.post("/send/create/:botid/",passport.authenticate("jwt",{session:false}),botController.createSendTemplate)
+
+
+
+ /*
+ @url api/dashboard/ai/remove/:botid/:aiid
+ @method Delete
+ @params botid,aiid
+ @type Private.,,,,,,,,,,,,,,,,,,,,,,,,,
+ @recieve 
+ @desc
+   for remove ai
+   return status
+   
+   */
+ 
+ Router.delete("/send/remove/:botid/:templateid",passport.authenticate("jwt",{session:false}),botController.removeSendTemplate)
+ 
+ 
+ 
+ /*
+ @url api/dashboard/ai/edit/:botid/:aiid
+ @method POST
+ @params botid,aiid
+ @type Private
+ @recieve ai Data
+ @desc
+   for edit ai
+   return edited ai new data
+   
+   */
+ Router.post("/send/edit/:botid/:templateid",passport.authenticate("jwt",{session:false}),botController.editSendTemplate)
+
+
+ 
+/*
+ @url api/dashboard/ai/create/:botid
+ @method Post
+ @type Private
+ @recieve 
+ @params botid
+ @desc
+  for creating ai
+  return created ai data
+  
+  */
+
+ Router.get("/send/get/:botid/",passport.authenticate("jwt",{session:false}),botController.getSendTemplates)
+ 
+/*
+ @url api/dashboard/ai/create/:botid
+ @method Post
+ @type Private
+ @recieve 
+ @params botid
+ @desc
+  for creating ai
+  return created ai data
+  
+  */
+
+ Router.post("/send/start/:botid/",passport.authenticate("jwt",{session:false}),botController.startSend)
+
+ /* END WELCOME TEMPLATE ROUTE */
 module.exports=Router

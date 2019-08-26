@@ -86,13 +86,12 @@ sendTypingBatch=async(users,seconds,page)=>{
              })
              */
              stringMessage=JSON.parse(stringMessage)
-             console.log("BEFORE TYPE : ",type,stringMessage)
+
    /* Handle Buttons inside Generic template */
    if(type=="generic"){
     stringMessage.attachment.payload.elements= stringMessage.attachment.payload.elements.map((elem)=>{
-    console.log("ELEM ",elem)
       if(elem.buttons.length==0){
-        console.log("ZERO ")
+
   
         delete elem.buttons
         
@@ -100,13 +99,13 @@ sendTypingBatch=async(users,seconds,page)=>{
       }
       return elem
     })
-    console.log("TYPE : ",type,stringMessage.attachment.payload.elements)
+   // console.log("TYPE : ",type,stringMessage.attachment.payload.elements)
   
   }
   /* END Handle  Buttons inside Generic template */
       
           
-           console.log(stringMessage)
+           //console.log(stringMessage)
               batch.push( {
                 "method" : "POST",
                 "relative_url"  : "me/messages",
@@ -120,7 +119,7 @@ sendTypingBatch=async(users,seconds,page)=>{
                 request.post("https://graph.facebook.com/v4.1/?access_token="+page.access_token, {
                       json:  {batch},
                   },(err,resp,body)=>{
-                  //  console.log("BODY ",body)
+                   console.log("BODY ",body)
                       resolve(body)
                   })
       })

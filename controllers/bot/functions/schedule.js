@@ -47,7 +47,7 @@ const editSchedule = async (req, res, err) => {
     scheduleData.end_date = !scheduleData.end_date ? undefined : scheduleData.end_date
     const bot = await Bot.findOne({ $and: [{ user_id: req.user._id }, { _id: req.params.botid }] })
     if (bot) {
-        const schedule = await Schedule.findOneAndUpdate({ $and: [{ _id: req.params.scheduleid }, { bot: bot._id }] }, { ...scheduleData }, { new: true })
+        const schedule = await Schedule.findOneAndUpdate({ $and: [{ _id: req.params.scheduleid }, { bot: bot._id }] }, { ...scheduleData,sent:false }, { new: true })
         process.send({ schedule, type: "edit" }, () => { })
         res.json({ schedule })
     } else {

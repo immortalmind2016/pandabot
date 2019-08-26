@@ -68,7 +68,7 @@ schedules.forEach((schedule)=>{
            
                                        }else*/
                                        messages.push(template)
-                                       console.log(template)
+                                     //  console.log(template)
                                    })
                                    let batches=batching(users);
                                    let counter=0;
@@ -78,21 +78,28 @@ schedules.forEach((schedule)=>{
                                        const sendInterval=setInterval(()=>{
                                           
                                     //       console.log("INDEX ",index , "******* ",batches[index])
-                                           sendToAll(batches[index],messages,page).then((data)=>{
+                                         sendToAll(batches[index],messages,page).then((data)=>{
+                                            counter+=batches[index].length;
+                                           //   console.log("COUNTER ",counter ,data )
+                                                if(counter%100000==0){
+                                                    Schedule.findOneAndUpdate({_id:schedule._id},{sent:true,numbers:counter},{new:true},(err,doc)=>{
+                                                        console.log("DOC ",doc)
+                                                    });
+                                                
+                                                }
+                                                if(index==batches.length-1){
+                                          
+                                                    Schedule.findOneAndUpdate({_id:schedule._id},{sent:true,numbers:counter},{new:true},(err,doc)=>{
+                                                //        console.log("DOC ",doc)
+                                                    });
+                
+                                                }
+                                         })
                                  
-                                               counter+=batches[index].length;
-                                           //    console.log("COUNTER ",counter)
-                                               if(counter%100000==0){
-                                                   Schedule.findOneAndUpdate({_id:schedule._id},{sent:true,numbers:counter});
-               
-                                               }
-                                               if(index==batches.length-1){
-                                                   Schedule.findOneAndUpdate({_id:schedule._id},{sent:true,numbers:counter});
-               
-                                               }
+                                             
                
                    
-                                           })
+                                       
                                            if(index==batches.length-1){
                                             clearInterval(sendInterval)
                                              }else
@@ -110,7 +117,7 @@ schedules.forEach((schedule)=>{
     
 })
 },1000)
-console.log(moment(moment().format("YYYY/MM/DD hh:mm")))
+//console.log(moment(moment().format("YYYY/MM/DD hh:mm")))
 
 process.on("message",(data)=>{
 

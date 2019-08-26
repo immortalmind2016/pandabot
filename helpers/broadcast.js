@@ -59,7 +59,7 @@ function sendToAll(users,templates,page,i=0){
             }else{
               let message=JSON.parse(templates[i].message)
 
-              sendMessageBatch(users,message,page,templates[i].type).then((data)=>{
+                sendMessageBatch(users,message,page,templates[i].type).then((data)=>{
            
                     if(i==templates.length-1){
                   

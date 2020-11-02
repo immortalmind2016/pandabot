@@ -1,4 +1,5 @@
-# pandabot
-•	Pandabot is a platform that helps you create Facebook chatbots.
-•	no need for programming expertise,
+# Pandabot
+Pandabot is a platform that helps you create Facebook chatbots.
+no need for programming expertise,
+</br>
 create your chatbot with few clicks.
